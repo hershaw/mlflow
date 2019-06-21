@@ -33,6 +33,7 @@ def _get_alembic_config(db_url, alembic_dir=None):
         if alembic_dir is None else alembic_dir
     config = Config(os.path.join(final_alembic_dir, 'alembic.ini'))
     config.set_main_option('script_location', final_alembic_dir)
+    db_url = db_url.replace('%', '%%')
     config.set_main_option('sqlalchemy.url', db_url)
     return config
 
